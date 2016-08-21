@@ -1,0 +1,44 @@
+单例模式——饿汉式（加载时就创建）
+
+1. 将无参构造方法显示私有化, 不允许外部直接创建对象
+private Singleton(){}
+2. 创建私有静态的唯一实例类的对象, 使用private static修饰
+private static Singleton instance = new Singleton();
+3. 提供一个公共静态方便外部用于获取实例的方法, 使用public static修饰
+public static Singleton getInstance(){return instance;}
+
+
+单例模式--懒汉模式：与饿汉不同的是在创建唯一实例时不new初始化
+a.将构造函数私有化
+b.声明类的唯一实例，并且私有化
+c.提供一个static修饰的方法获取当前类所创建的唯一的类实例。
+
+1、理解懒汉：在加载类的时候，只是声明一个引用，并没有实例化。只有第一次调用共有方法时才实例化。形象：不急切的，慵懒的
+
+2--懒汉模式实例化方法：
+ClassName static instance = null;
+
+3、向外公开一个访问实例对象的方法。
+//饿汉模式访问实例对象的方法：
+public static ClassName getInstance(){
+return instance;
+}
+//懒汉模式访问实例对象的方法：
+public static ClassName getInstance(){
+if(instance==null){
+instance = new new ClassName();
+}
+return instance;
+}
+
+总结:
+单例模式
+1：饿汉模式，加载慢，获取快，线程安全
+2：懒汉模式，加载快，获取慢，线程不安全
+单列模式分为：
+饿汉式：声明的同时直接实例化。 特点：加载类时比较慢，但运行时获取对象的速度比较快，线程安全。
+懒汉式：声明的时候不实例化。 特点：加载类时比较快，但运行时获取对象的速度比较慢，线程不安全。
+实现单列模式的三个步骤：
+1、将构造方法私有化，不允许外界直接创建对象。
+2、声明类的唯一实例，使用private static修饰。
+3、提供一个供外界获取实例的方法，使用public static修饰。
